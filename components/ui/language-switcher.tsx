@@ -1,6 +1,6 @@
 "use client";
 
-import { languages } from "@/lib/i18n";
+import { dictionaries, languages } from "@/lib/i18n";
 import { useSitePreferences } from "@/lib/providers/site-preferences";
 
 export function LanguageSwitcher() {
@@ -15,7 +15,7 @@ export function LanguageSwitcher() {
     >
       {languages.map((lang) => (
         <option key={lang} value={lang}>
-          {lang}
+          {dictionaries[lang].langLabel}
         </option>
       ))}
     </select>
