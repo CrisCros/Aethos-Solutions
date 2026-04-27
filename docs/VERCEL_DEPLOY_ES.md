@@ -10,7 +10,7 @@ En **Project Settings**:
 - **Root Directory:** `.` (raíz del repositorio)
 - **Build Command:** `npm run build`
 - **Install Command:** `npm install`
-- **Output Directory:** dejar vacío (recomendado)
+- **Output Directory:** `.next` (alineado con `vercel.json`)
 
 ## 2) Variables de entorno
 
@@ -29,7 +29,7 @@ En **Project Settings → Environment Variables** agrega:
 
 **Solución:**
 1. Cambiar `Root Directory` a `.`
-2. Limpiar `Output Directory` (vacío) o usar `.next`
+2. Configurar `Output Directory` en `.next` (igual que `vercel.json`)
 3. Redeploy
 
 ### Error B

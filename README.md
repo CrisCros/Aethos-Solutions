@@ -85,7 +85,7 @@ Variables:
 If you see that exact error in Vercel logs, apply this checklist in order:
 
 1. **Project Settings → General → Root Directory** must be `.` (repo root), **not** `app`.
-2. **Project Settings → Build & Development Settings → Output Directory** should be empty (recommended) or `.next`.
+2. Keep **Output Directory** aligned with `vercel.json` (`.next`).
 3. Redeploy after saving settings.
 4. Keep the standard Next.js build (`npm run build`) to avoid tracing mismatches in Vercel runtimes.
 
