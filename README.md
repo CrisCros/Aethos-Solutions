@@ -80,12 +80,14 @@ Variables:
 - Test the form endpoint in production at `https://<your-domain>/api/contact`.
 
 
-### Fix for error: `The Next.js output directory ".next" was not found at "/vercel/path0/app/.next"`
+### Fix for error: `The Next.js output directory "app/.next" was not found at "/vercel/path0/app/app/.next"`
 
-If you see that exact error in Vercel logs, apply this checklist in order:
+If you see this exact variant (`app/app/.next`), Vercel is trying to read an **Output Directory** that is duplicated (`app/.next`) while the project root is already `app` in the build container.
+
+Apply this checklist in order:
 
 1. **Project Settings → General → Root Directory** must be `.` (repo root), **not** `app`.
-2. Keep **Output Directory** aligned with `vercel.json` (`.next`).
+2. In Vercel, set **Output Directory** to empty/default (recommended) or `.next` (never `app/.next`).
 3. Redeploy after saving settings.
 4. Keep the standard Next.js build (`npm run build`) to avoid tracing mismatches in Vercel runtimes.
 
