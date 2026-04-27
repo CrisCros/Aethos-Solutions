@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:vercel": "rm -rf app/.next app/node_modules && rm -f app/package.json && next build && cp -R .next app/.next && ln -s ../node_modules app/node_modules && cp package.json app/package.json",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"

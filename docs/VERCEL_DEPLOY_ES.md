@@ -8,9 +8,9 @@ En **Project Settings**:
 
 - **Framework Preset:** `Next.js`
 - **Root Directory:** `.` (raíz del repositorio)
-- **Build Command:** `npm run build`
+- **Build Command:** `npm run build:vercel`
 - **Install Command:** `npm install`
-- **Output Directory:** `.next` (alineado con `vercel.json`)
+- **Output Directory:** vacío/default (recomendado) o `.next` (nunca `app/.next`)
 
 ## 2) Variables de entorno
 
@@ -23,14 +23,16 @@ En **Project Settings → Environment Variables** agrega:
 ## 3) Errores comunes y solución
 
 ### Error A
-`The Next.js output directory ".next" was not found at "/vercel/path0/app/.next"`
+`The Next.js output directory "app/.next" was not found at "/vercel/path0/app/app/.next"`
 
-**Causa probable:** `Root Directory` mal configurado en `app` o `Output Directory` incorrecto.
+**Causa probable:** `Root Directory` mal configurado en `app` o `Output Directory` duplicado en `app/.next`.
 
 **Solución:**
 1. Cambiar `Root Directory` a `.`
-2. Configurar `Output Directory` en `.next` (igual que `vercel.json`)
+2. Dejar `Output Directory` vacío/default (recomendado) o usar `.next` (nunca `app/.next`)
 3. Redeploy
+
+> Nota: `build:vercel` ejecuta `next build`, copia `.next` a `app/.next`, crea un enlace `app/node_modules -> ../node_modules` y copia `package.json` dentro de `app/` para compatibilidad de runtime traces.
 
 ### Error B
 `ENOENT: ... /vercel/path0/app/node_modules/styled-jsx/index.js`
@@ -39,9 +41,11 @@ En **Project Settings → Environment Variables** agrega:
 
 **Solución:**
 1. Confirmar `Root Directory = .`
-2. Confirmar `Build Command = npm run build`
-3. No mover/copiar manualmente `.next` dentro de `app/`
-4. Hacer redeploy y, si hace falta, limpiar caché
+2. Confirmar `Build Command = npm run build:vercel`
+3. Confirmar que `Output Directory` sea vacío/default o `.next`
+4. Confirmar que `app/node_modules` apunte a `../node_modules` (lo hace automáticamente `build:vercel`)
+5. Confirmar que `app/package.json` exista durante el empaquetado (lo hace automáticamente `build:vercel`)
+6. Hacer redeploy y, si hace falta, limpiar caché
 
 ## 4) Validación final
 
