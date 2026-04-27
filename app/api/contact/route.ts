@@ -3,14 +3,15 @@ import { NextResponse } from "next/server";
 type ContactPayload = {
   name?: string;
   email?: string;
+  company?: string;
   message?: string;
 };
 
 export async function POST(request: Request) {
   const body = (await request.json()) as ContactPayload;
-  const { name, email, message } = body;
+  const { name, email, company, message } = body;
 
-  if (!name || !email || !message) {
+  if (!name || !email || !company || !message) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
@@ -24,8 +25,9 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           name,
           email,
+          company,
           message,
-          source: "aethos-landing-page",
+          source: "aethos-website",
           submittedAt: new Date().toISOString()
         })
       });
