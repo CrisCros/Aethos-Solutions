@@ -10,7 +10,7 @@ En **Project Settings**:
 - **Root Directory:** `.` (raíz del repositorio)
 - **Build Command:** `npm run build`
 - **Install Command:** `npm install`
-- **Output Directory:** `.next` (alineado con `vercel.json`)
+- **Output Directory:** vacío/default (recomendado) o `.next` (nunca `app/.next`)
 
 ## 2) Variables de entorno
 
@@ -23,13 +23,13 @@ En **Project Settings → Environment Variables** agrega:
 ## 3) Errores comunes y solución
 
 ### Error A
-`The Next.js output directory ".next" was not found at "/vercel/path0/app/.next"`
+`The Next.js output directory "app/.next" was not found at "/vercel/path0/app/app/.next"`
 
-**Causa probable:** `Root Directory` mal configurado en `app` o `Output Directory` incorrecto.
+**Causa probable:** `Root Directory` mal configurado en `app` o `Output Directory` duplicado en `app/.next`.
 
 **Solución:**
 1. Cambiar `Root Directory` a `.`
-2. Configurar `Output Directory` en `.next` (igual que `vercel.json`)
+2. Dejar `Output Directory` vacío/default (recomendado) o usar `.next` (nunca `app/.next`)
 3. Redeploy
 
 ### Error B

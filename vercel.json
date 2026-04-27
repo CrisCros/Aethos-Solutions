@@ -7,6 +7,5 @@
     "app/api/contact/route.ts": {
       "maxDuration": 10
     }
-  },
-  "outputDirectory": ".next"
+  }
 }
