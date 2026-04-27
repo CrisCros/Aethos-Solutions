@@ -1,0 +1,7 @@
+node_modules/
+.next/
+app/.next/
+app/node_modules
+app/package.json
+.env.local
+npm-debug.log*
