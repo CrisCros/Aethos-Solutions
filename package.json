@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:vercel": "next build && rm -rf app/.next && cp -R .next app/.next",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"

@@ -67,7 +67,7 @@ Variables:
    - **Framework Preset:** Next.js
    - **Root Directory:** `.`
    - **Install Command:** `npm install`
-   - **Build Command:** `npm run build`
+   - **Build Command:** `npm run build:vercel`
 4. Add environment variables from `.env.example` in **Project Settings → Environment Variables**.
 5. Set your production domain (for example `aethos-solutions.vercel.app` or a custom domain) and match `NEXT_PUBLIC_SITE_URL`.
 6. Redeploy.
@@ -89,7 +89,7 @@ Apply this checklist in order:
 1. **Project Settings → General → Root Directory** must be `.` (repo root), **not** `app`.
 2. In Vercel, set **Output Directory** to empty/default (recommended) or `.next` (never `app/.next`).
 3. Redeploy after saving settings.
-4. Keep the standard Next.js build (`npm run build`) to avoid tracing mismatches in Vercel runtimes.
+4. Keep Vercel build command as `npm run build:vercel` (it runs `next build` and mirrors `.next` into `app/.next` for compatibility with Vercel output path checks).
 
 
 ### Fix for error: `ENOENT ... /app/node_modules/styled-jsx/index.js`
@@ -97,8 +97,7 @@ Apply this checklist in order:
 This usually happens when Vercel runtime traces are being read from `app/.next` while dependencies are installed at repository root.
 
 - Ensure **Root Directory** is `.`
-- Do **not** mirror `.next` manually into `/app/.next`
-- Use the default build command: `npm run build`
+- Use **Build Command**: `npm run build:vercel`
 - Redeploy after clearing previous failed deployment cache
 
 
