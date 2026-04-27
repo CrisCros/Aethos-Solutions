@@ -32,7 +32,7 @@ En **Project Settings → Environment Variables** agrega:
 2. Dejar `Output Directory` vacío/default (recomendado) o usar `.next` (nunca `app/.next`)
 3. Redeploy
 
-> Nota: `build:vercel` ejecuta `next build` y luego copia `.next` a `app/.next` para cubrir validaciones de salida de Vercel en distintos contextos de build.
+> Nota: `build:vercel` ejecuta `next build`, copia `.next` a `app/.next` y crea un enlace `app/node_modules -> ../node_modules` para compatibilidad de runtime traces.
 
 ### Error B
 `ENOENT: ... /vercel/path0/app/node_modules/styled-jsx/index.js`
@@ -43,7 +43,8 @@ En **Project Settings → Environment Variables** agrega:
 1. Confirmar `Root Directory = .`
 2. Confirmar `Build Command = npm run build:vercel`
 3. Confirmar que `Output Directory` sea vacío/default o `.next`
-4. Hacer redeploy y, si hace falta, limpiar caché
+4. Confirmar que `app/node_modules` apunte a `../node_modules` (lo hace automáticamente `build:vercel`)
+5. Hacer redeploy y, si hace falta, limpiar caché
 
 ## 4) Validación final
 

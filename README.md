@@ -89,7 +89,7 @@ Apply this checklist in order:
 1. **Project Settings → General → Root Directory** must be `.` (repo root), **not** `app`.
 2. In Vercel, set **Output Directory** to empty/default (recommended) or `.next` (never `app/.next`).
 3. Redeploy after saving settings.
-4. Keep Vercel build command as `npm run build:vercel` (it runs `next build` and mirrors `.next` into `app/.next` for compatibility with Vercel output path checks).
+4. Keep Vercel build command as `npm run build:vercel` (it runs `next build`, mirrors `.next` into `app/.next`, and links `app/node_modules` to root `node_modules` for runtime traces).
 
 
 ### Fix for error: `ENOENT ... /app/node_modules/styled-jsx/index.js`
@@ -98,6 +98,7 @@ This usually happens when Vercel runtime traces are being read from `app/.next` 
 
 - Ensure **Root Directory** is `.`
 - Use **Build Command**: `npm run build:vercel`
+- Ensure `app/node_modules` resolves to the repository root `node_modules` (handled by `build:vercel`).
 - Redeploy after clearing previous failed deployment cache
 
 
