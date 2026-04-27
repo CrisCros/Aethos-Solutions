@@ -2,6 +2,8 @@
 
 Esta guía evita los errores más comunes que aparecieron en los despliegues previos.
 
+> Seguridad: Vercel bloquea despliegues con versiones vulnerables de Next.js (CVE-2025-66478). Este repo usa `next@15.2.6` para la rama 15.2.x.
+
 ## 1) Configuración del proyecto en Vercel
 
 En **Project Settings**:

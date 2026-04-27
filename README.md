@@ -59,6 +59,10 @@ Variables:
 - `NEXT_PUBLIC_CALENDLY_URL` (optional): direct scheduling link.
 - `WEBHOOK_URL` (optional): receives contact form submissions.
 
+## Security note (Vercel / Next.js)
+
+Vercel blocks deployments using vulnerable Next.js versions affected by CVE-2025-66478. This project is pinned to `next@15.2.6` (patched for the 15.2.x line).
+
 ## Production deploy (Vercel)
 
 1. Push repository to GitHub.
