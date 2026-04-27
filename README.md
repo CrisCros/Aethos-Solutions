@@ -29,8 +29,10 @@ High-conversion landing page built with **Next.js App Router**, **TypeScript**, 
 │   └── workflow-diagram.tsx
 ├── lib
 │   └── site.ts
+├── .env.example
 ├── next.config.ts
 ├── tailwind.config.ts
+├── vercel.json
 └── ...
 ```
 
@@ -45,16 +47,34 @@ Open `http://localhost:3000`.
 
 ## Environment variables
 
-Create `.env.local` (optional):
+Create `.env.local` from `.env.example`:
 
 ```bash
-WEBHOOK_URL=https://your-n8n-or-webhook-endpoint
-NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-link
+cp .env.example .env.local
 ```
 
-## Deploy to Vercel
+Variables:
+
+- `NEXT_PUBLIC_SITE_URL`: canonical site URL for SEO metadata (production domain).
+- `NEXT_PUBLIC_CALENDLY_URL` (optional): direct scheduling link.
+- `WEBHOOK_URL` (optional): receives contact form submissions.
+
+## Production deploy (Vercel)
 
 1. Push repository to GitHub.
 2. Import project in Vercel.
-3. Add optional environment variables in Vercel settings.
-4. Deploy.
+3. Confirm these settings:
+   - **Framework Preset:** Next.js
+   - **Root Directory:** `.`
+   - **Install Command:** `npm install`
+   - **Build Command:** `npm run build`
+4. Add environment variables from `.env.example` in **Project Settings → Environment Variables**.
+5. Set your production domain (for example `aethos-solutions.vercel.app` or a custom domain) and match `NEXT_PUBLIC_SITE_URL`.
+6. Redeploy.
+
+### Quick checklist if deployment is "Ready" but site config still feels incomplete
+
+- Check that `Production Branch` is set correctly (usually `main`).
+- Re-run deployment after adding environment variables.
+- Confirm DNS status in **Domains** if using a custom domain.
+- Test the form endpoint in production at `https://<your-domain>/api/contact`.
