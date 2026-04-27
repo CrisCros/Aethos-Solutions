@@ -3,13 +3,17 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+}
+
+:root.dark {
   color-scheme: dark;
 }
 
 body {
-  @apply bg-[#0B0B0F] text-white antialiased;
-  background-image: radial-gradient(circle at 20% 0%, rgba(124, 58, 237, 0.18), transparent 35%),
-    radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.12), transparent 30%);
+  @apply min-h-screen bg-slate-50 text-slate-900 antialiased transition-colors duration-300 dark:bg-[#07070b] dark:text-slate-100;
+  background-image: radial-gradient(circle at 18% 0%, rgba(124, 58, 237, 0.1), transparent 38%),
+    radial-gradient(circle at 82% 8%, rgba(167, 139, 250, 0.1), transparent 28%);
 }
 
 body::before {
@@ -17,29 +21,11 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.09;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.5) 0.6px, transparent 0.6px);
+  opacity: 0.08;
+  background-image: radial-gradient(rgba(99, 102, 241, 0.4) 0.6px, transparent 0.6px);
   background-size: 3px 3px;
 }
 
-.section-title {
-  @apply text-2xl font-semibold tracking-tight text-white md:text-3xl;
-}
-
-.section-subtitle {
-  @apply mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base;
-}
-
-@keyframes cta-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.35);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(124, 58, 237, 0);
-  }
-}
-
-.animate-cta-pulse {
-  animation: cta-pulse 2.1s ease-out infinite;
+.glass {
+  @apply border border-violetBrand-300/40 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
 }
