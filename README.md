@@ -67,7 +67,7 @@ Variables:
    - **Framework Preset:** Next.js
    - **Root Directory:** `.`
    - **Install Command:** `npm install`
-   - **Build Command:** `npm run build`
+   - **Build Command:** `npm run build:vercel`
 4. Add environment variables from `.env.example` in **Project Settings → Environment Variables**.
 5. Set your production domain (for example `aethos-solutions.vercel.app` or a custom domain) and match `NEXT_PUBLIC_SITE_URL`.
 6. Redeploy.
@@ -78,3 +78,13 @@ Variables:
 - Re-run deployment after adding environment variables.
 - Confirm DNS status in **Domains** if using a custom domain.
 - Test the form endpoint in production at `https://<your-domain>/api/contact`.
+
+
+### Fix for error: `The Next.js output directory ".next" was not found at "/vercel/path0/app/.next"`
+
+If you see that exact error in Vercel logs, apply this checklist in order:
+
+1. **Project Settings → General → Root Directory** must be `.` (repo root), **not** `app`.
+2. **Project Settings → Build & Development Settings → Output Directory** should be empty (recommended) or `.next`.
+3. Redeploy after saving settings.
+4. This repository also includes a Vercel-safe build command (`npm run build:vercel`) that mirrors `.next` into `app/.next` to avoid path mismatch issues in legacy/misconfigured deployments.
